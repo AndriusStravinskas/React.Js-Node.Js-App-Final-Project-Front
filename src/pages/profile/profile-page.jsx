@@ -1,14 +1,18 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import LoginForm from './components/login-form';
+import ProfileForm from './components/profile-form';
 
-const LoginPage = () => {
+const Profile = () => {
+
+
 
   return (
+
     <Box sx={{ width: '400px', mt: 10 }}>
-      <LoginForm />
+      <ProfileForm />
     </Box>
+
   );
 };
 
-export default LoginPage;
+export default Profile;

@@ -12,3 +12,33 @@ export const pages = [
     path: '/login',
   },
 ];
+
+export const userLoginPage = [
+  {
+    title: 'Home',
+    path: '/',
+  },
+  {
+    title: 'Chats',
+    path: '/chats',
+  },
+];
+
+export const settings = [
+  {
+    title: 'Profile',
+    path: '/profile',
+    handle: () => {
+      window.location.href = `/profile/${localStorage.getItem('username')}`;
+    },
+  },
+  {
+    title: 'Logout',
+    path: '/logout',
+    handle: () => {
+      localStorage.removeItem('userSecret');
+      localStorage.removeItem('username');
+      window.location.href = '/';
+    },
+  }
+];
