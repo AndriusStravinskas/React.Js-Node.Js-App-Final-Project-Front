@@ -100,7 +100,7 @@ const SmallNavbar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            CHAT
           </Typography>
 
     </>

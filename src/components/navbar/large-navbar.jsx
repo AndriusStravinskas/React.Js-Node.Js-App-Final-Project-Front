@@ -11,12 +11,14 @@ import MessageIcon from '@mui/icons-material/Message';
 import { pages, settings, userLoginPage } from './navbar-data';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { NavigationContext } from '../../helpers/navigation-context';
 
 
 const LargeNavbar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const nav = useNavigate();
   const { myUser } = useSelector((state) => state.user);
+  const { navigate } = React.useContext(NavigationContext);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -82,7 +84,7 @@ const LargeNavbar = () => {
             gap: '1rem',
           }}
           >
-            <Typography sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <Typography sx={{ display: { xs: 'flex', md: 'flex' } }}>
               {myUser.user.username}
             </Typography>
             <Tooltip title="Open settings">
@@ -107,7 +109,10 @@ const LargeNavbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting.title} onClick={setting.handle}>
+                <MenuItem 
+                key={setting.title} 
+                onClick={setting.handle ? setting.handle : () => navigate(setting.path)}
+                >
                   <Typography textAlign="center">{setting.title}</Typography>
                 </MenuItem>
               ))}

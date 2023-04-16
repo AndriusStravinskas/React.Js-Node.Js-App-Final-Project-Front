@@ -10,6 +10,8 @@ import ProfilePage from './pages/profile/profile-page';
 import ChangePassword from './pages/profile/components/change-password';
 import ConversationPage from './pages/conversation/conversation-page';
 import ChatPage from './pages/chat/chat-page';
+import UserProfilePage from './pages/user-profile/user-profile-page';
+import NavigationProvider from './helpers/navigation-context';
 
 const App = () => {
 
@@ -31,6 +33,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+        <NavigationProvider>
 
       <ResponsiveAppBar />
 
@@ -41,6 +44,7 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
 
           <Route path='/profile/:username' element={<ProfilePage />} />
+          <Route path='/userProfile/:username' element={<UserProfilePage />} />
           <Route path='/change-password/:username' element={<ChangePassword />} />
           <Route path='/chats' element={<ConversationPage />} />
           <Route path='/chat/:id' element={<ChatPage />} />
@@ -48,10 +52,10 @@ const App = () => {
 
           <Route path="*" element={<Box>404 Not Found</Box>} />
 
-
         </Routes>
       </Container>
 
+        </NavigationProvider>
     </BrowserRouter>
   );
 };

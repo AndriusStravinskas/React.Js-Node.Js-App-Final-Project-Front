@@ -2,14 +2,18 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typo
 import axios from 'axios';
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate} from 'react-router-dom';
 
 const UserCard = ({ user }) => {
 
   const loggedInUser = useSelector((state) => state.user.myUser.user);
   const myUser = useSelector((state) => state.user.myUser);
+  const nav = useNavigate();
+
 
 
   const handleCreateChat = async (username) => {
+
 
     try {
       const res = await axios.post('http://localhost:5000/create-chat', { 
@@ -23,10 +27,13 @@ const UserCard = ({ user }) => {
     }
   };
 
+
   return (
 
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea
+      onClick={() => nav(`/userProfile/${user.username}`)}
+      >
         <CardMedia
           component="img"
           height="350"

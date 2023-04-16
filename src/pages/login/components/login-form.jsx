@@ -1,13 +1,12 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoginValidationSchema from '../validation/login-validate-Schema';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
 const LoginForm = () => {
-  const nav = useNavigate();
   const dispatch = useDispatch();
 
 
@@ -24,18 +23,18 @@ const LoginForm = () => {
         const res = await axios.post('http://localhost:5000/login', values);
         console.log(res.data);
         if (res.data.success) {
-        localStorage.setItem('userSecret', res.data.userSecret);
-        localStorage.setItem('username', res.data.username);
-        localStorage.setItem('avatarImage', res.data.avatarImage);
-        dispatch({ 
-          type: 'user/login',
-          payload: { 
-            userSecret: res.data.userSecret, 
-            username: res.data.username,
-            avatarImage: res.data.avatarImage,
-          } 
-        });
-        nav('/');
+          localStorage.setItem('userSecret', res.data.userSecret);
+          localStorage.setItem('username', res.data.username);
+          localStorage.setItem('avatarImage', res.data.avatarImage);
+          dispatch({
+            type: 'user/login',
+            payload: {
+              userSecret: res.data.userSecret,
+              username: res.data.username,
+              avatarImage: res.data.avatarImage,
+            }
+          });
+          window.location.href = '/';
         }
       } catch (error) {
         console.log(error.message);

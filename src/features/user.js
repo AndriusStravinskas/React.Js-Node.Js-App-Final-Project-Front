@@ -16,6 +16,7 @@ const userSlice = createSlice({
     allUsers: [],
     userChat: [],
     conversation: null,
+    otherUser: null,
   },
   reducers: {
 
@@ -36,7 +37,12 @@ const userSlice = createSlice({
 
     setConversation: (state, action) => {
       state.conversation = action.payload;
+    },
+
+    setOtherUser: (state, action) => {
+      state.otherUser = action.payload;
     }
+
 },
 
 });
@@ -45,7 +51,8 @@ export const {
   login,
   allUsers,
   allUserChat,
-  conversation,
+  setConversation,
+  setOtherUser
 } = userSlice.actions;
 
 export default userSlice.reducer;

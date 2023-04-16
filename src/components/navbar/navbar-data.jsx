@@ -27,10 +27,8 @@ export const userLoginPage = [
 export const settings = [
   {
     title: 'Profile',
-    path: '/profile',
-    handle: () => {
-      window.location.href = `/profile/${localStorage.getItem('username')}`;
-    },
+    path: `/profile/${localStorage.getItem('username')}`,
+    
   },
   {
     title: 'Logout',

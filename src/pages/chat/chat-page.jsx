@@ -25,7 +25,7 @@ const ChatPage = () => {
 
   const convertISODateToTime = (isoDate) => {
     const date = new Date(isoDate);
-    const options = { hour12: false, hour: '2-digit', minute: '2-digit' };
+    const options = { weekday: 'short', hour12: false, hour: '2-digit', minute: '2-digit' };
     return date.toLocaleTimeString('en-US', options);
   };
 
@@ -36,23 +36,34 @@ const ChatPage = () => {
     <Paper sx={{ width: '100%', height: '800px', padding: '20px', marginTop: '20px' }}>
       <Grid container style={{ height: '100vh' }}>
         <Grid item xs={12}>
-          <List style={{ height: 'calc(100% - 250px)', overflowY: 'scroll' }}>
+          <List style={{ height: 'calc(100% - 250px)', overflowY: 'auto' }}>
             {convo?.map((message) => (
-              <ListItem 
-              key={message.time} 
-              
-              >
+              <ListItem key={message.time} >
                 <Grid container>
                   <Grid item xs={12}>
                     <ListItemText 
                       align={alignMessage(message.sender)} 
-                      primary={message.message} 
+                      secondary={convertISODateToTime(message.time)} 
+                      sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                      }}
                     />
                   </Grid>
                   <Grid item xs={12}>
                     <ListItemText 
                       align={alignMessage(message.sender)} 
-                      secondary={convertISODateToTime(message.time)} 
+                      primary={message.message}
+                      sx={{
+                        display: 'flex',
+                        justifyContent: alignMessage(message.sender),
+                        '& .MuiListItemText-primary': {
+                          backgroundColor: alignMessage(message.sender) === 'right' ? 'primary.main' : 'secondary.main',
+                          color: '#fff',
+                          padding: '10px',
+                          borderRadius: alignMessage(message.sender) === 'right' ? '15px 15px 3px 15px' : '15px 15px 15px 3px',
+                        },
+                      }}
                     />
                   </Grid>
                 </Grid>
