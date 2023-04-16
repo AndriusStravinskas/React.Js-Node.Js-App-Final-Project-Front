@@ -34,9 +34,10 @@ const ChatPage = () => {
   return (
 
     <Paper sx={{ width: '100%', height: '800px', padding: '20px', marginTop: '20px' }}>
-      <Grid container style={{ height: '100vh' }}>
-        <Grid item xs={12}>
-          <List style={{ height: 'calc(100% - 250px)', overflowY: 'auto' }}>
+      <Grid container>
+        <Grid item xs={12} 
+        >
+          <List style={{ height: '680px', overflowY: 'auto' }}>
             {convo?.map((message) => (
               <ListItem key={message.time} >
                 <Grid container>
@@ -70,8 +71,14 @@ const ChatPage = () => {
               </ListItem>
             ))}
           </List>
-          <Divider />
-          <ChatInput />
+          <Grid 
+          item 
+          xs={12}
+          
+          >
+            <Divider />
+            <ChatInput />
+          </Grid>
         </Grid>
       </Grid>
     </Paper>
