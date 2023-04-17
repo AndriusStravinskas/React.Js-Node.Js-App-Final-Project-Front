@@ -1,11 +1,13 @@
 import React from 'react';
-import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const ConversationCard = ({ chat }) => {
   const nav = useNavigate();
+  const dispatch = useDispatch();
+
 
   const loggedInUser = useSelector((state) => state.user.myUser.user);
 
@@ -19,9 +21,14 @@ const ConversationCard = ({ chat }) => {
     if (confirm) {
 
     try {
-      const res = await axios.delete(`http://localhost:5000/deleteChat/${id}`);
+      const res = await axios.delete(`http://localhost:5000/deleteChat/${id}`, {
+        data: {
+          loggedInUserUsername: loggedInUser.username,
+        },
+      });
+      dispatch({ type: 'user/allUserChat', payload: res.data.allChats });
 
-      console.log(res);
+      console.log(res.data);
       
     } catch (error) {
       console.log(error.message);
@@ -30,7 +37,12 @@ const ConversationCard = ({ chat }) => {
   };
 
   return (
-    <div>
+    <Box 
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+    }}
+    >
       {receivers.map((receiver) => (
         <Card key={receiver._id} sx={{ maxWidth: 345 }}>
           <CardActionArea>
@@ -69,7 +81,7 @@ const ConversationCard = ({ chat }) => {
           </CardActions>
         </Card>
       ))}
-    </div>
+    </Box>
   );
 };
 

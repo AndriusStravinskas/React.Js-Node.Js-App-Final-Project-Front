@@ -78,8 +78,7 @@ const LargeNavbar = () => {
           <Box 
           sx={{ 
             display: 'flex', 
-            alignItems: 'center', 
-            textAlign: 'center', 
+            alignItems: 'center',
             flexGrow: 0,
             gap: '1rem',
           }}

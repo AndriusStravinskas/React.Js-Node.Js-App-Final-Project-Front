@@ -58,7 +58,14 @@ const ProfileForm = () => {
 
   return (
 
-    <>
+    <Box 
+    sx={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      width: '100%',
+    }}
+    >
       {error && <Alert severity="error" sx={{ mb: 5}}>{error}</Alert>}
       <Typography component="h1" variant="h5" sx={{ mb: 2 }}>
         Update profile
@@ -66,7 +73,13 @@ const ProfileForm = () => {
       <Box
         component="form"
         noValidate
-        sx={{ mt: 1 }}
+        sx={{ 
+          mt: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          alignItems: 'center',
+         }}
         onSubmit={Formik.handleSubmit}
       >
         <TextField
@@ -99,7 +112,7 @@ const ProfileForm = () => {
           type="submit"
           fullWidth
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 3, mb: 2, width: '200px' }}
         >
 
           Update
@@ -109,13 +122,13 @@ const ProfileForm = () => {
         <Button
           fullWidth
           variant="contained"
-          sx={{ mt: 3, mb: 2 }}
+          sx={{ mt: 3, mb: 2, width: '200px', }}
           onClick={() => nav(`/change-password/${username}`)}
         >
           Change password
         </Button>
       </Box>
-    </>
+    </Box>
 
   );
 };

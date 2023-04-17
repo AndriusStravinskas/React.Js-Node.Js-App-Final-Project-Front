@@ -24,7 +24,10 @@ const ConversationPage = () => {
   return (
 
     <Box sx={{ width: '1000px', mt: 10 }}>
-      <Grid container spacing={2} width="100%">
+      <Grid 
+      container 
+      spacing={5} 
+      >
 
         {userChat?.map((chat) => (
           <Grid item key={chat._id} xs={12} md={6} lg={4}>
